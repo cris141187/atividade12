@@ -8,6 +8,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:background="@color/black"
         android:text="Valor em Reais" />
 
     <EditText
@@ -15,6 +20,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ex: 45,00"
+        android:textColorHint="@color/white"
+        android:textStyle="italic"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:textAlignment="center"
         android:inputType="numberDecimal" />
 
     <Button
@@ -22,5 +32,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Calcular" />
+
+    <Button
+        android:id="@+id/btnlimpar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Limpar" />
 
 </LinearLayout>

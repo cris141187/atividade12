@@ -9,6 +9,7 @@ import org.jetbrains.anko.alert
 import org.jetbrains.anko.uiThread
 import org.json.JSONObject
 import kotlinx.android.synthetic.main.bloco_cotacao.*
+import kotlinx.android.synthetic.main.bloco_cotacao2.*
 import kotlinx.android.synthetic.main.bloco_entrada.*
 import kotlinx.android.synthetic.main.bloco_saida.*
 import java.text.NumberFormat
@@ -29,6 +30,12 @@ class MainActivity : AppCompatActivity() {
         Log.e(TAG, "LOG DE ERRO", RuntimeException("TESTE ERRO"))
 
         buscarCotacao()
+        btnCalcular.setOnClickListener {
+            calcular()
+        }
+        btnlimpar.setOnClickListener {
+            txtValor.text.clear()
+        }
     }
 
     fun buscarCotacao() {
@@ -38,15 +45,33 @@ class MainActivity : AppCompatActivity() {
 
             cotacaoBitcoin = JSONObject(resposta).getJSONObject("ticker").getDouble("last")
             val f = NumberFormat.getCurrencyInstance(Locale("pt","br"))
+            val g = NumberFormat.getCurrencyInstance(Locale.US)
             val cotacaoFormatada = f.format(cotacaoBitcoin)
+            var cotacaoFormatada2 = g.format(cotacaoBitcoin/5.27)
             uiThread {
-                alert("$cotacaoBitcoin").show()
+                //alert("$cotacaoBitcoin").show()
 
-                alert("$cotacaoFormatada").show()
+                //alert("$cotacaoFormatada").show()
                 txtCotacao.setText("$cotacaoFormatada")
+                txtCotacao2.setText("$cotacaoFormatada2")
 
             }
         }
+
+    }
+
+    fun calcular(){
+        if (txtValor.text.isEmpty()){
+            txtValor.error ="Preencha um valor"
+            return
+        }
+        val valorDigitado = txtValor.text.toString().
+        replace(",",".").toDouble()
+        val resultado = if(cotacaoBitcoin>0) valorDigitado / cotacaoBitcoin
+
+        else 0.0
+        txtQtdBitcoins.text = "%.8f".format(resultado)
+        txtQtdBitcoins2.text = "%.8f".format(resultado/5.27)
 
     }
 }

@@ -6,11 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:background="@drawable/bitcoin"
     tools:context=".MainActivity">
 
     <include layout="@layout/bloco_titulo"/>
 
     <include layout="@layout/bloco_cotacao" />
+
+    <include layout="@layout/bloco_cotacao2" />
 
     <include layout="@layout/bloco_entrada" />
 
